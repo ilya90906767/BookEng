@@ -1,0 +1,17 @@
+version: "3.9"
+services:
+  postgres:
+    image: postgres:14.8-alpine3.18
+    environment:
+      POSTGRES_DB: "bookengdb"
+      POSTGRES_USER: betyaevilya
+      POSTGRES_PASSWORD: 90906767
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    volumes:
+      - ../2. Init Database:/docker-entrypoint-initdb.d
+      - bookengdb-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  bookengdb-data:
