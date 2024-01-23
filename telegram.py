@@ -52,6 +52,18 @@ def process_file(message):
 def send_welcome(message): 
     bot.reply_to(message, "There will be help message")
 
+
+
+@bot.message_handler(commands=['mybooks'])
+def mybooks(message):
+    user_books = get_user_books(message.chat.id)
+    str_of_books = ''
+    for book in user_books:
+        str_of_books = str_of_books + book[2] + " "
+        
+    bot.send_message(message.chat.id,str_of_books )
+
+
 @bot.message_handler(commands=['read'])
 def start_reading(message):
     bot.send_message(message.chat.id,Martin_Eden.getbookframe(0,10))

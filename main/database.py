@@ -103,7 +103,7 @@ def get_books():
     curs.execute("SELECT * FROM books")
     books = curs.fetchall()
     for book in books:
-        print(book)
+        print('There is a book:', book)
         
 def get_tables():
     curs = connect()
@@ -135,10 +135,24 @@ def add_book(user_id,book_name,book_src):
     else:
         return None
     
+def get_user_books(user_id):
+    curs = connect()
+    if curs is not None:
+        try: 
+            curs.execute(f"SELECT * FROM books WHERE user_id = '{user_id}' ")
+            books = curs.fetchall()
+            print(f'Books of {user_id}:{books}')
+            return books 
+        except Exception as error:
+            print(f"An error occurred when trying to execute the query: {error}")
+            return None
+    else: 
+        return None
+    
     
 
 #create_table()
 #add_book(111,'TestBook','URLTest')
 #delete_user(111111)
-get_users()
-get_books()
+#get_users()
+get_user_books(566563049)
