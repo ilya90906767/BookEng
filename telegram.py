@@ -79,4 +79,8 @@ def send_test(message):
     keyboard.add(stop)
     bot.send_message(message.chat.id, Martin_Eden.getbookframe(0,15), reply_markup=keyboard)
 
+@bot.message_handler(commands=['Тестовый пул реквест'])
+def send_welcome(message): 
+    bot.reply_to(message, "Артур пул реквест")
+
 bot.infinity_polling()
